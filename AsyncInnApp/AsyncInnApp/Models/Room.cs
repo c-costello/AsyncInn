@@ -14,8 +14,8 @@ namespace AsyncInnApp.Models
         public enum LayoutType { Studio, OneBedroom, TwoBedroom, Suite, Penthouse}
 
         //navigational properties
-        public HotelRoom HotelRoom { get; set; }
-        public RoomAmenities RoomAmenities { get; set; }
+        public ICollection<HotelRoom> HotelRoom { get; set; }
+        public ICollection<RoomAmenities> RoomAmenities { get; set; }
 
 
     }
