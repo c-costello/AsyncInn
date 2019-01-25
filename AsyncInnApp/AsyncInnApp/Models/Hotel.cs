@@ -12,5 +12,7 @@ namespace AsyncInnApp.Models
         public string Address { get; set; }
         public string Phone { get; set; }
 
+        //Navigational Properties
+        public HotelRoom HotelRoom { get; set; }
     }
 }
