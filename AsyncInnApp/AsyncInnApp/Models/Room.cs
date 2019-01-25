@@ -7,5 +7,12 @@ namespace AsyncInnApp.Models
 {
     public class Room
     {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public LayoutType Layout { get; set; }
+        
+        public enum LayoutType { Studio, OneBedroom, TwoBedroom, Suite, Penthouse}
+
+
     }
 }
