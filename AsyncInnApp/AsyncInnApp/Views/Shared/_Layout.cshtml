@@ -21,11 +21,17 @@
             </ul>
         </nav>
     </header>
-    <div class="my-body">
-        @RenderBody()
-    </div>
+    <main>
+        <div class="my-body">
+            @RenderBody()
+        </div>
+    </main>
     <footer>
         <p>This is my footer</p>
     </footer>
 </body>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 </html>

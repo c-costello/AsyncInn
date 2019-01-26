@@ -1,23 +1,30 @@
 ﻿header {
     width: 100%;
     background-color: grey;
-    height: 15vh;
+    height: 8vw;
 }
-
-main{
-    width: 60vw;
+main {
+    min-height: 100vh;
+    width: 80vw;
     background-color: lightgray;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    justify-content: center;
 }
 
 .my-body{
-    min-height: 80vh;
+    margin: 3vw;
+    width: inherit;
 }
 
 footer {
     background-color: grey;
-    height: 5vh;
+    height: 3vw;
+    padding: .5vw;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
 }
 
 
@@ -27,6 +34,7 @@ ul {
     justify-content: space-around;
     padding-left: 4vw;
     padding-right: 4vw;
+    padding-bottom: 1vw;
 }
 
 
@@ -39,10 +47,17 @@ h1, h2, h3, h4, h5, p, ul, a{
 
 a {
     color: white;
+    font-size: 2vw;
 }
 
 h1 {
     font-size: 3vw;
     text-align: center;
     padding: 1vw;
+}
+
+
+
+footer p {
+    text-align: center;
 }
