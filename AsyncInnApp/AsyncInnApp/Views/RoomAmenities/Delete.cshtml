@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "Delete";
 }
+@{
+    Layout = "_Layout";
+}
 
 <h1>Delete</h1>
 
@@ -11,20 +14,20 @@
     <h4>RoomAmenities</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Amenities)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Amenities.ID)
-        </dd class>
-        <dt class = "col-sm-2">
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Room)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Room.ID)
-        </dd class>
+        </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="AmenitiesID" />
         <input type="hidden" asp-for="RoomID" />
