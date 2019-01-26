@@ -3,6 +3,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Reset.css" rel="stylesheet" />
+    <link href="~/Base.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
 </head>
 <body>
@@ -10,16 +12,16 @@
         <h1>Async Inn</h1>
         <nav class="nav-bar">
             <ul>
-                <li><a href="~/Views/Home/Index.cshtml">Home</a></li>
-                <li><a href="~/Views/Hotels/Index.cshtml">Hotel</a></li>
-                <li><a href="~/Views/HotelRooms/Index.cshtml">HotelRooms</a></li>
-                <li><a href="~/Views/Rooms/Index.cshtml">Rooms</a></li>
-                <li><a href="~/Views/RoomAmenities/Index.cshtml">RoomAmenities</a></li>
-                <li><a href="~/Views/Amenities/Index.cshtml">Amenities</a></li>
+                <li><a href="~/">Home</a></li>
+                <li><a href="~/Hotels/">Hotel</a></li>
+                <li><a href="~/HotelRooms/">HotelRooms</a></li>
+                <li><a href="~/Rooms/">Rooms</a></li>
+                <li><a href="~/RoomAmenities/">RoomAmenities</a></li>
+                <li><a href="~/Amenities/">Amenities</a></li>
             </ul>
         </nav>
     </header>
-    <div>
+    <div class="my-body">
         @RenderBody()
     </div>
     <footer>
