@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Reset.css" rel="stylesheet" />
+    <link href="~/Base.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header>
+        <h1>Async Inn</h1>
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="~/">Home</a></li>
+                <li><a href="~/Hotels/">Hotel</a></li>
+                <li><a href="~/HotelRooms/">HotelRooms</a></li>
+                <li><a href="~/Rooms/">Rooms</a></li>
+                <li><a href="~/RoomAmenities/">RoomAmenities</a></li>
+                <li><a href="~/Amenities/">Amenities</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="my-body">
+            @RenderBody()
+        </div>
+    </main>
+    <footer>
+        <p>This is my footer</p>
+    </footer>
+</body>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</html>
