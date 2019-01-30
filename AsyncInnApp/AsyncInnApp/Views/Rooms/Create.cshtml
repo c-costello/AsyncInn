@@ -7,9 +7,11 @@
     Layout = "_Layout";
 }
 
-<h1>Create</h1>
+<div class="title-head">
+    <h4>Create</h4>
 
-<h4>Room</h4>
+    <h4>Room</h4>
+</div>
 <hr />
 <section class="form-holder">
 
@@ -29,10 +31,10 @@
                         <label asp-for="Layout"></label>
                         <select asp-for="Layout" asp-items="@Html.GetEnumSelectList<AsyncInnApp.Models.Room.LayoutType>()"></select>
                     </div>
-                    <span asp-validation-for="Layout" class="text-danger"></span>
+                    <span asp-validation-for="Layout"></span>
                 </div>
                 <div class="button-div">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <input type="submit" value="Create"/>
                 </div>
             </form>
         </div>
