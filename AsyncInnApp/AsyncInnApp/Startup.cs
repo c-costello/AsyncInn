@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AsyncInnApp.Data;
+using AsyncInnApp.Models.Interfaces;
+using AsyncInnApp.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -29,6 +31,8 @@ namespace AsyncInnApp
             services.AddMvc();
             services.AddDbContext<AsyncInnDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IHotel, HotelService>();
 
         }
 
