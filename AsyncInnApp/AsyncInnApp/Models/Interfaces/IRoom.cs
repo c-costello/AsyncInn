@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AsyncInnApp.Models.Interfaces
 {
-    interface IRoom
+    public interface IRoom
     {
         Task CreateRoom(Room room);
 
@@ -13,8 +13,8 @@ namespace AsyncInnApp.Models.Interfaces
 
         Task<IEnumerable<Room>> GetRooms();
 
-        void UpdateRoom(Room room);
+        Task UpdateRoom(Room room);
 
-        void DeleteRoom(int id);
+        Task DeleteRoom(int id);
     }
 }
