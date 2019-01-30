@@ -34,15 +34,16 @@ namespace AsyncInnApp.Models.Services
         }
 
 
-        public void UpdateAmenity(Amenities amenity)
+        public async Task UpdateAmenity(Amenities amenity)
         {
             _context.Amenities.Update(amenity);
+            await _context.SaveChangesAsync();
         }
-        public void DeleteAmenity(int id)
+        public async Task DeleteAmenity(int id)
         {
             Amenities amenity = _context.Amenities.FirstOrDefault(a => a.ID == id);
             _context.Amenities.Remove(amenity);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

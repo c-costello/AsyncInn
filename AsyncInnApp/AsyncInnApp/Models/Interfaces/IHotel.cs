@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AsyncInnApp.Models.Interfaces
 {
-    interface IHotel
+    public interface IHotel
     {
         Task CreateHotel(Hotel hotel);
 
@@ -13,9 +13,9 @@ namespace AsyncInnApp.Models.Interfaces
 
         Task<IEnumerable<Hotel>> GetHotels();
 
-        void UpdateHotel(Hotel hotel);
+        Task UpdateHotel(Hotel hotel);
 
-        void DeleteHotel(int id);
+        Task DeleteHotel(int id);
 
     }
 }

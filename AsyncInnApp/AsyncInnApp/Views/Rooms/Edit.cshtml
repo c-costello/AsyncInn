@@ -7,34 +7,44 @@
     Layout = "_Layout";
 }
 
-<h1>Edit</h1>
+<div class="title-head">
+    <h4>Edit</h4>
 
-<h4>Room</h4>
+    <h4>Room</h4>
+</div>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ID" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Layout" class="control-label"></label>
-                <select asp-for="Layout" class="form-control"></select>
-                <span asp-validation-for="Layout" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+<section class="form-holder">
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <div class="form">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly"></div>
+                <div>
+                    <div>
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" />
+                    </div>
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <div>
+                    <div>
+                        <label asp-for="Layout"></label>
+                        <select asp-for="Layout" asp-items="@Html.GetEnumSelectList<AsyncInnApp.Models.Room.LayoutType>()"></select>
+                    </div>
+                    <span asp-validation-for="Layout"></span>
+                </div>
+                <div class="button-div">
+                    <input type="submit" value="Save" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="back">
+        <a asp-action="Index">Back to List</a>
+    </div>
+</section>
+
+
 
 

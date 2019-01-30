@@ -12,12 +12,34 @@
         <h1>Async Inn</h1>
         <nav class="nav-bar">
             <ul>
-                <li><a href="~/">Home</a></li>
-                <li><a href="~/Hotels/">Hotel</a></li>
-                <li><a href="~/HotelRooms/">HotelRooms</a></li>
-                <li><a href="~/Rooms/">Rooms</a></li>
-                <li><a href="~/RoomAmenities/">RoomAmenities</a></li>
-                <li><a href="~/Amenities/">Amenities</a></li>
+                <li class="nav-part home-nav"><a href="~/">Home</a></li>
+                <div class="hotel-container">
+                    <li class="nav-part"> Hotels</li>
+                    <div class="hotel-content">
+                        <li><a href="~/Hotels/">View Hotels</a></li>
+                        <li><a href="~/Hotels/create">Create Hotel</a></li>
+                    </div>
+                </div>
+                <div class="room-container">
+                    <li class="nav-part"> Rooms</li>
+                    <div class="room-content">
+                        <li><a href="~/Rooms/">View Rooms</a></li>
+                        <li><a href="~/Rooms/create">Create Room</a></li>
+                    </div>
+                </div>
+                <div class="amen-container">
+                    <li class="nav-part"> Amenities</li>
+                    <div class="amen-content">
+                        <li><a href="~/Amenities/">View Amentities</a></li>
+                        <li><a href="~/Amenities/create">Create Amenities</a></li>
+                    </div>
+                </div>
+
+
+
+
+                <li class="nav-part hr-nav"><a href="~/HotelRooms/">HotelRooms</a></li>
+                <li class="nav-part ra-nav"><a href="~/RoomAmenities/">RoomAmenities</a></liclass="nav-part">
             </ul>
         </nav>
     </header>
