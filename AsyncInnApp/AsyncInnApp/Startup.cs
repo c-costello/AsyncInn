@@ -33,6 +33,7 @@ namespace AsyncInnApp
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IHotel, HotelService>();
+            services.AddScoped<IRoom, RoomService>();
 
         }
 

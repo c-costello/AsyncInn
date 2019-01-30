@@ -7,7 +7,7 @@ namespace AsyncInnApp.Models.Interfaces
 {
     interface IRoom
     {
-        Task CreateHotel(Room room);
+        Task CreateRoom(Room room);
 
         Task<Room> GetRoom(int id);
 
