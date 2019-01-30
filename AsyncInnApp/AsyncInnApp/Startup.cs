@@ -34,6 +34,7 @@ namespace AsyncInnApp
 
             services.AddScoped<IHotel, HotelService>();
             services.AddScoped<IRoom, RoomService>();
+            services.AddScoped<IAmenities, AmenitiesService>();
 
         }
 
