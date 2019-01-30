@@ -10,26 +10,32 @@
 
 <h4>RoomAmenities</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="AmenitiesID" class="control-label"></label>
-                <select asp-for="AmenitiesID" class="form-control" asp-items="ViewBag.AmenitiesID"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="RoomID" class="control-label"></label>
-                <select asp-for="RoomID" class="form-control" asp-items="ViewBag.RoomID"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<section class="form-holder">
+
+    <div>
+        <div class="form">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div>
+                    <div>
+                        <label asp-for="AmenitiesID" ></label>
+                        <select asp-for="AmenitiesID" asp-items="ViewBag.AmenitiesID"></select>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label asp-for="RoomID"></label>
+                        <select asp-for="RoomID" asp-items="ViewBag.RoomID"></select>
+                    </div>
+                </div>
+                <div class="button-div">
+                    <input type="submit" value="Create"/>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+    <div class="back">
+        <a asp-action="Index">Back to List</a>
+    </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+</section>
