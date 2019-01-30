@@ -1,8 +1,14 @@
-﻿header {
+﻿*{
+    box-sizing: border-box;
+    outline: 1px solid green;
+}
+
+header {
     width: 100%;
     background-color: grey;
     height: 8vw;
 }
+
 main {
     min-height: 100vh;
     width: 80vw;
@@ -46,9 +52,13 @@ h1, h2, h3, h4, h5, p, ul, a{
 }
 
 
-a {
+a, li {
     color: white;
     font-size: 2vw;
+}
+li {
+    display: flex;
+    justify-content: center;
 }
 
 h1 {
@@ -61,4 +71,87 @@ h1 {
 
 footer p {
     text-align: center;
+}
+
+
+
+.hotel-container {
+    position: relative;
+    display: inline-block;
+}
+.hotel-content {
+    display: none;
+    position: absolute;
+}
+.hotel-container:hover{
+    background-color: black;
+    color: yellow;
+}
+    .hotel-container:hover .hotel-content {
+        display: block;
+        background-color: black;
+        width: 15vw;
+        height: auto;
+        padding: .5vw;
+    }
+
+.room-container {
+    position: relative;
+    display: inline-block;
+}
+
+.room-content {
+    display: none;
+    position: absolute;
+}
+
+.room-container:hover {
+    background-color: black;
+    color: yellow;
+}
+
+    .room-container:hover .room-content {
+        display: block;
+        background-color: black;
+        width: 15vw;
+        height: auto;
+        padding: .5vw;
+    }
+
+.amen-container {
+    position: relative;
+    display: inline-block;
+}
+
+.amen-content {
+    display: none;
+    position: absolute;
+}
+
+.amen-container:hover {
+    background-color: black;
+    color: yellow;
+}
+
+    .amen-container:hover .amen-content {
+        display: block;
+        background-color: black;
+        width: 15vw;
+        height: auto;
+        padding: .5vw;
+    }
+
+.nav-part{
+    width: 15vw;
+    height: 3vw;
+    padding: .5vw;
+}
+
+.home-nav:hover, .ra-nav:hover, .hr-nav:hover{
+    background-color: black;
+    color: yellow;
+}
+
+li a:hover{
+    color: yellow;
 }
