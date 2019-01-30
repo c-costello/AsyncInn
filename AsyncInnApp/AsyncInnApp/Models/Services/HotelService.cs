@@ -33,16 +33,18 @@ namespace AsyncInnApp.Models.Services
         }
 
 
-        public void UpdateHotel(Hotel hotel)
+        public async Task UpdateHotel(Hotel hotel)
         {
             _context.Hotel.Update(hotel);
+            await _context.SaveChangesAsync();
+
         }
 
-        public void DeleteHotel(int id)
+        public async Task DeleteHotel(int id)
         {
             Hotel hotel = _context.Hotel.FirstOrDefault(h => h.ID == id);
             _context.Hotel.Remove(hotel);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
