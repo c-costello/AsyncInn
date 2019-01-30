@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AsyncInnApp.Models.Interfaces
 {
-    interface IAmenities
+    public interface IAmenities
     {
         Task CreateAmenity(Amenities amenity);
 
@@ -13,9 +13,9 @@ namespace AsyncInnApp.Models.Interfaces
 
         Task<IEnumerable<Amenities>> GetAmenities();
 
-        void UpdateAmenity(Amenities amenity);
+        Task UpdateAmenity(Amenities amenity);
 
-        void DeleteAmenity(int id);
+        Task DeleteAmenity(int id);
 
     }
 }
