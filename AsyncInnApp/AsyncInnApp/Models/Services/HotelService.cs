@@ -46,5 +46,6 @@ namespace AsyncInnApp.Models.Services
             _context.Hotel.Remove(hotel);
             await _context.SaveChangesAsync();
         }
+
     }
 }

@@ -21,10 +21,10 @@ namespace AsyncInnApp.Controllers
         }
 
         // GET: Hotels
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.GetHotels());
-        }
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.GetHotels());
+        //}
 
         // GET: Hotels/Details/5
         public async Task<IActionResult> Details(int id)
@@ -138,6 +138,23 @@ namespace AsyncInnApp.Controllers
                 return false;
             }
             return true;
+        }
+
+        //Get: Hotels/Search
+        public async Task<IActionResult> Index(string searchString)
+        {
+            if (searchString == null)
+            {
+                return View(await _context.GetHotels());
+            }
+            var hotels = await _context.GetHotels();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                hotels = hotels.Where(h => h.Name.ToLower().Contains(searchString.ToLower()));
+            }
+
+            return View(hotels);
         }
     }
 }

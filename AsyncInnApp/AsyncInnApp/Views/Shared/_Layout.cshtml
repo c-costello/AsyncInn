@@ -3,6 +3,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=B612|Merienda|Monda|Orbitron|Poiret+One|Righteous|Ropa+Sans" rel="stylesheet">
     <link href="~/Reset.css" rel="stylesheet" />
     <link href="~/Base.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
@@ -14,21 +15,21 @@
             <ul>
                 <li class="nav-part home-nav"><a href="~/">Home</a></li>
                 <div class="hotel-container">
-                    <li class="nav-part"> Hotels</li>
+                    <li class="nav-part"><a href="~/Hotels/">Hotels</a></li>
                     <div class="hotel-content">
                         <li><a href="~/Hotels/">View Hotels</a></li>
                         <li><a href="~/Hotels/create">Create Hotel</a></li>
                     </div>
                 </div>
                 <div class="room-container">
-                    <li class="nav-part"> Rooms</li>
+                    <li class="nav-part"><a href="~/Rooms/">Rooms</a></li>
                     <div class="room-content">
                         <li><a href="~/Rooms/">View Rooms</a></li>
                         <li><a href="~/Rooms/create">Create Room</a></li>
                     </div>
                 </div>
                 <div class="amen-container">
-                    <li class="nav-part"> Amenities</li>
+                    <li class="nav-part"><a href="~/Amenities">Amenities</a></li>
                     <div class="amen-content">
                         <li><a href="~/Amenities/">View Amentities</a></li>
                         <li><a href="~/Amenities/create">Create Amenities</a></li>
@@ -38,8 +39,8 @@
 
 
 
-                <li class="nav-part hr-nav"><a href="~/HotelRooms/">HotelRooms</a></li>
-                <li class="nav-part ra-nav"><a href="~/RoomAmenities/">RoomAmenities</a></liclass="nav-part">
+                <li class="nav-part hr-nav"><a href="~/HotelRooms/"> Hotel<br /> Rooms</a></li>
+                <li class="nav-part ra-nav"><a href="~/RoomAmenities/">Room <br/>Amenities</a></li>
             </ul>
         </nav>
     </header>

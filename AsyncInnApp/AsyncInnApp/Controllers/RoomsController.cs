@@ -21,10 +21,10 @@ namespace AsyncInnApp.Controllers
         }
 
         // GET: Rooms
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.GetRooms());
-        }
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.GetRooms());
+        //}
 
         // GET: Rooms/Details/5
         public async Task<IActionResult> Details(int id)
@@ -137,6 +137,22 @@ namespace AsyncInnApp.Controllers
                 return false;
             }
             return true;
+        }
+        //Get Rooms + Search
+        public async Task<IActionResult> Index(string searchString)
+        {
+            if (searchString == null)
+            {
+                return View(await _context.GetRooms());
+            }
+            var rooms = await _context.GetRooms();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                rooms = rooms.Where(r => r.Name.ToLower().Contains(searchString.ToLower()));
+            }
+
+            return View(rooms);
         }
     }
 }

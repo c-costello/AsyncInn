@@ -7,8 +7,19 @@
     Layout = "_Layout";
 }
 
-<h1>Index</h1>
+<div class="title-head">
+    <h4>Index</h4>
 
+    <h4>Hotels</h4>
+</div>
+<hr />
+<form asp-controller="Hotels" asp-action="Index">
+<label>Search</label>
+    <input type="text" name="searchString" />
+    <input type="submit" value="Filter" />
+
+</form>
+<p>There are @Model.ToArray().Length  Hotels.</p>
 <p class="create-new">
     <a asp-action="Create">Create New</a>
 </p>
@@ -50,4 +61,4 @@
             }
         </tbody>
     </table>
-    </section>
+</section>
