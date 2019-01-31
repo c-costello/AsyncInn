@@ -17,5 +17,6 @@ namespace AsyncInnApp.Models.Interfaces
 
         Task DeleteHotel(int id);
 
+
     }
 }
