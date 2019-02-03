@@ -20,7 +20,9 @@ namespace AsyncInnApp
 
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder().AddEnvironmentVariables();
+            builder.AddUserSecrets<Startup>();
+            Configuration = builder.Build();
 
         }
 
@@ -30,7 +32,7 @@ namespace AsyncInnApp
         {
             services.AddMvc();
             services.AddDbContext<AsyncInnDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
             services.AddScoped<IHotel, HotelService>();
             services.AddScoped<IRoom, RoomService>();
