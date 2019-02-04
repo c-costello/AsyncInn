@@ -43,6 +43,11 @@ namespace AsyncInnApp.Models.Services
         public async Task DeleteHotel(int id)
         {
             Hotel hotel = _context.Hotel.FirstOrDefault(h => h.ID == id);
+            IEnumerable<HotelRoom> hotelRoom = _context.HotelRoom.Where(h => h.HotelID == hotel.ID);
+            foreach (var room in hotelRoom)
+            {
+                _context.HotelRoom.Remove(room);
+            }
             _context.Hotel.Remove(hotel);
             await _context.SaveChangesAsync();
         }

@@ -42,6 +42,16 @@ namespace AsyncInnApp.Models.Services
         public async Task DeleteRoom(int id)
         {
             Room room = _context.Room.FirstOrDefault(r => r.ID == id);
+            IEnumerable<HotelRoom> hotelRoom = _context.HotelRoom.Where(h => h.RoomID == room.ID);
+            IEnumerable<RoomAmenities> roomAmentites = _context.RoomAmenities.Where(h => h.RoomID == room.ID);
+            foreach (var hotelroom in hotelRoom)
+            {
+                _context.HotelRoom.Remove(hotelroom);
+            }
+            foreach (var amenity in roomAmentites)
+            {
+                _context.RoomAmenities.Remove(amenity);
+            }
             _context.Room.Remove(room);
             await _context.SaveChangesAsync();
         }

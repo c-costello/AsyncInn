@@ -42,6 +42,11 @@ namespace AsyncInnApp.Models.Services
         public async Task DeleteAmenity(int id)
         {
             Amenities amenity = _context.Amenities.FirstOrDefault(a => a.ID == id);
+            IEnumerable<RoomAmenities> roomAmenities = _context.RoomAmenities.Where(h => h.AmenitiesID == amenity.ID);
+            foreach (var roomAmenity in roomAmenities)
+            {
+                _context.RoomAmenities.Remove(roomAmenity);
+            }
             _context.Amenities.Remove(amenity);
             await _context.SaveChangesAsync();
         }
