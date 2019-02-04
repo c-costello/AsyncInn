@@ -23,6 +23,9 @@
         <thead>
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.RoomNumber)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.RoomID)
                 </th>
                 <th>
@@ -40,25 +43,28 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RoomID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Rate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PetFriendly)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Hotel.ID)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { hotelID=item.HotelID, roomNumber=item.RoomNumber }) |
-                        @Html.ActionLink("Details", "Details", new { hotelID = item.HotelID, roomNumber = item.RoomNumber }) |
-                        @Html.ActionLink("Delete", "Delete", new { hotelID = item.HotelID, roomNumber = item.RoomNumber })
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PetFriendly)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hotel.ID)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { hotelID = item.HotelID, roomNumber = item.RoomNumber }) |
+                    @Html.ActionLink("Details", "Details", new { hotelID = item.HotelID, roomNumber = item.RoomNumber }) |
+                    @Html.ActionLink("Delete", "Delete", new { hotelID = item.HotelID, roomNumber = item.RoomNumber })
+                </td>
+            </tr>
             }
         </tbody>
     </table>
