@@ -11,8 +11,9 @@ namespace AsyncInnApp.Models
         public string Name { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
+        public int NumberOfRooms { get; set; }
 
         //Navigational Properties
-        public HotelRoom HotelRoom { get; set; }
+        public ICollection<HotelRoom> HotelRoom { get; set; }
     }
 }

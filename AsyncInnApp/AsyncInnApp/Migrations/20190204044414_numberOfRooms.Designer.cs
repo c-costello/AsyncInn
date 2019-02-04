@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AsyncInnApp.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    [Migration("20190129060449_seeddata")]
-    partial class seeddata
+    [Migration("20190204044414_numberOfRooms")]
+    partial class numberOfRooms
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,6 +71,8 @@ namespace AsyncInnApp.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("NumberOfRooms");
+
                     b.Property<string>("Phone");
 
                     b.HasKey("ID");
@@ -83,6 +85,7 @@ namespace AsyncInnApp.Migrations
                             ID = 1,
                             Address = "123 Ocean Street",
                             Name = "Poseidon Inn",
+                            NumberOfRooms = 0,
                             Phone = "555-555-5555"
                         },
                         new
@@ -90,6 +93,7 @@ namespace AsyncInnApp.Migrations
                             ID = 2,
                             Address = "123 Spring Street",
                             Name = "Persophene Inn",
+                            NumberOfRooms = 0,
                             Phone = "444-555-6666"
                         },
                         new
@@ -97,6 +101,7 @@ namespace AsyncInnApp.Migrations
                             ID = 3,
                             Address = "123 Moon Street",
                             Name = "Artemis Inn",
+                            NumberOfRooms = 0,
                             Phone = "777-555-8888"
                         },
                         new
@@ -104,6 +109,7 @@ namespace AsyncInnApp.Migrations
                             ID = 4,
                             Address = "123 Sun Street",
                             Name = "Apollo Inn",
+                            NumberOfRooms = 0,
                             Phone = "555-999-5555"
                         },
                         new
@@ -111,6 +117,7 @@ namespace AsyncInnApp.Migrations
                             ID = 5,
                             Address = "123 Wine Street",
                             Name = "Diones Inn",
+                            NumberOfRooms = 0,
                             Phone = "555-999-8888"
                         });
                 });

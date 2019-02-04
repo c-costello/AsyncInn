@@ -13,28 +13,28 @@
     <h4>HotelRoom</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
+        <dt>
             @Html.DisplayNameFor(model => model.RoomID)
         </dt>
-        <dd class="col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.RoomID)
         </dd>
-        <dt class="col-sm-2">
+        <dt>
             @Html.DisplayNameFor(model => model.Rate)
         </dt>
-        <dd class="col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.Rate)
         </dd>
-        <dt class="col-sm-2">
+        <dt>
             @Html.DisplayNameFor(model => model.PetFriendly)
         </dt>
-        <dd class="col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.PetFriendly)
         </dd>
-        <dt class="col-sm-2">
+        <dt>
             @Html.DisplayNameFor(model => model.Hotel)
         </dt>
-        <dd class="col-sm-10">
+        <dd>
             @Html.DisplayFor(model => model.Hotel.ID)
         </dd>
     </dl>
@@ -42,7 +42,7 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="HotelID" />
         <input type="hidden" asp-for="RoomNumber" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" value="Delete"/> |
         <a asp-action="Index">Back to List</a>
     </form>
 </div>

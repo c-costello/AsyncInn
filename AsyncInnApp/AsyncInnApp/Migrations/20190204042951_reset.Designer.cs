@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AsyncInnApp.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    [Migration("20190125235245_Initial")]
-    partial class Initial
+    [Migration("20190204042951_reset")]
+    partial class reset
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,33 @@ namespace AsyncInnApp.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Amenities");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Name = "Minifridge"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Name = "Kitchenette"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Name = "Jacuzzi"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Name = "Free Wifi"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Name = "Balcony"
+                        });
                 });
 
             modelBuilder.Entity("AsyncInnApp.Models.Hotel", b =>
@@ -49,6 +76,43 @@ namespace AsyncInnApp.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Hotel");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Address = "123 Ocean Street",
+                            Name = "Poseidon Inn",
+                            Phone = "555-555-5555"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Address = "123 Spring Street",
+                            Name = "Persophene Inn",
+                            Phone = "444-555-6666"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Address = "123 Moon Street",
+                            Name = "Artemis Inn",
+                            Phone = "777-555-8888"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Address = "123 Sun Street",
+                            Name = "Apollo Inn",
+                            Phone = "555-999-5555"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Address = "123 Wine Street",
+                            Name = "Diones Inn",
+                            Phone = "555-999-8888"
+                        });
                 });
 
             modelBuilder.Entity("AsyncInnApp.Models.HotelRoom", b =>
@@ -88,6 +152,44 @@ namespace AsyncInnApp.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Room");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Layout = 1,
+                            Name = "Honeymoon Suite"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Layout = 1,
+                            Name = "Singles Suite"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Layout = 2,
+                            Name = "Corner Suite"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Layout = 2,
+                            Name = "Family Suite"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Layout = 0,
+                            Name = "King Studio"
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Layout = 4,
+                            Name = "PentHouse"
+                        });
                 });
 
             modelBuilder.Entity("AsyncInnApp.Models.RoomAmenities", b =>
