@@ -17,15 +17,12 @@
     <div>
         <div class="form">
             <form asp-action="Edit">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="HotelID" />
-                <input type="hidden" asp-for="RoomNumber" />
+                <div asp-validation-summary="ModelOnly"></div>
                 <div>
                     <div>
                         <label asp-for="RoomID"></label>
-                        <input asp-for="RoomID" />
+                        <select asp-for="RoomID" asp-items="ViewBag.RoomID"></select>
                     </div>
-                    <span asp-validation-for="RoomID"></span>
                 </div>
                 <div>
                     <div>
@@ -40,7 +37,7 @@
                     </label>
                 </div>
                 <div class="button-div">
-                    <input type="submit" value="Save"/>
+                    <input type="submit" value="Save" />
                 </div>
             </form>
         </div>

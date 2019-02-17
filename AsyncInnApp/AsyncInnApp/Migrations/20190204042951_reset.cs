@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AsyncInnApp.Migrations
 {
-    public partial class Initial : Migration
+    public partial class reset : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -99,6 +99,43 @@ namespace AsyncInnApp.Migrations
                         principalTable: "Room",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Amenities",
+                columns: new[] { "ID", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Minifridge" },
+                    { 2, "Kitchenette" },
+                    { 3, "Jacuzzi" },
+                    { 4, "Free Wifi" },
+                    { 5, "Balcony" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Hotel",
+                columns: new[] { "ID", "Address", "Name", "Phone" },
+                values: new object[,]
+                {
+                    { 1, "123 Ocean Street", "Poseidon Inn", "555-555-5555" },
+                    { 2, "123 Spring Street", "Persophene Inn", "444-555-6666" },
+                    { 3, "123 Moon Street", "Artemis Inn", "777-555-8888" },
+                    { 4, "123 Sun Street", "Apollo Inn", "555-999-5555" },
+                    { 5, "123 Wine Street", "Diones Inn", "555-999-8888" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Room",
+                columns: new[] { "ID", "Layout", "Name" },
+                values: new object[,]
+                {
+                    { 1, 1, "Honeymoon Suite" },
+                    { 2, 1, "Singles Suite" },
+                    { 3, 2, "Corner Suite" },
+                    { 4, 2, "Family Suite" },
+                    { 5, 0, "King Studio" },
+                    { 6, 4, "PentHouse" }
                 });
 
             migrationBuilder.CreateIndex(

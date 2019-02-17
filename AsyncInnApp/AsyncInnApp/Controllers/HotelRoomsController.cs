@@ -59,11 +59,14 @@ namespace AsyncInnApp.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(hotelRoom);
+                Hotel hotel = _context.Hotel.FirstOrDefault(h => hotelRoom.HotelID == h.ID);
+                hotel.NumberOfRooms++;
+                _context.Hotel.Update(hotel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["HotelID"] = new SelectList(_context.Hotel, "ID", "Name", hotelRoom.HotelID);
-            ViewData["RoomID"] = new SelectList(_context.Hotel, "ID", "Name", hotelRoom.RoomID);
+            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "Name", hotelRoom.RoomID);
             return View(hotelRoom);
         }
 
@@ -79,8 +82,7 @@ namespace AsyncInnApp.Controllers
             {
                 return NotFound();
             }
-            ViewData["HotelID"] = new SelectList(_context.Hotel, "ID", "Name", hotelRoom.HotelID);
-            ViewData["RoomID"] = new SelectList(_context.Hotel, "ID", "Name", hotelRoom.RoomID);
+            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "Name", hotelRoom.RoomID);
             return View(hotelRoom);
         }
 
