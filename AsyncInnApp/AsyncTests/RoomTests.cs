@@ -29,7 +29,25 @@ namespace AsyncTests
 
             Assert.Equal("name 2", room.Name);
         }
+        [Fact]
+        public void CanGetRoomLayout()
+        {
+            Room room = new Room();
+            room.Layout = Room.LayoutType.OneBedroom;
 
+            Assert.Equal(Room.LayoutType.OneBedroom, room.Layout);
+        }
+
+        [Fact]
+        public void CanSetRoomLayout()
+        {
+            Room room = new Room();
+            room.Layout = Room.LayoutType.OneBedroom;
+
+            room.Layout = Room.LayoutType.Penthouse;
+            Assert.Equal(Room.LayoutType.Penthouse, room.Layout);
+
+        }
         [Fact]
         public async void CanCreateRoom()
         {

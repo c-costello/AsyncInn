@@ -31,6 +31,69 @@ namespace AsyncTests
         }
 
         [Fact]
+        public void CanGetAddressOfHotel()
+        {
+            Hotel hotel = new Hotel();
+            hotel.Address = "test";
+
+            Assert.Equal("test", hotel.Address);
+
+        }
+        
+        [Fact]
+        public void CanGetPhoneNumberOfHotel()
+        {
+            Hotel hotel = new Hotel();
+            hotel.Phone = "123-456-7890";
+
+            Assert.Equal("123-456-7890", hotel.Phone);
+
+        }
+
+        [Fact]
+        public void CanGetNumberOfRoomsOfHotel()
+        {
+            Hotel hotel = new Hotel();
+            hotel.NumberOfRooms = 3;
+
+            Assert.Equal(3, hotel.NumberOfRooms);
+        }
+
+        [Fact]
+        public void CanSetAddressOfHotel()
+        {
+            Hotel hotel = new Hotel();
+            hotel.Address = "test";
+            hotel.Address = "test2";
+
+            Assert.Equal("test2", hotel.Address);
+
+        }
+
+        [Fact]
+        public void CanSetPhoneNumberOfHotel()
+        {
+            Hotel hotel = new Hotel();
+            hotel.Phone = "123-456-7890";
+            hotel.Phone = "555-555-5555";
+
+            Assert.Equal("555-555-5555", hotel.Phone);
+
+        }
+
+        [Fact]
+        public void CanSetNumberOfRoomsOfHotel()
+        {
+            Hotel hotel = new Hotel();
+            hotel.NumberOfRooms = 3;
+            hotel.NumberOfRooms = 5;
+
+            Assert.Equal(5, hotel.NumberOfRooms);
+        }
+
+
+
+        [Fact]
         public async void CanCreateHotel()
         {
             DbContextOptions<AsyncInnDbContext> options = new DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase("CreateHotel").Options;
