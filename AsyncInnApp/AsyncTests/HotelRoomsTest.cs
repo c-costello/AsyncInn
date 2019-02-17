@@ -6,20 +6,12 @@ using AsyncInnApp.Data;
 using AsyncInnApp.Models.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using AsyncInnApp.Controllers;
 
 namespace AsyncTests
 {
     public class HotelRoomsTest
     {
-
-        public int HotelID { get; set; }
-        public int RoomNumber { get; set; }
-
-
-
-        public decimal RoomID { get; set; }
-        public decimal Rate { get; set; }
-        public bool PetFriendly { get; set; }
         [Fact]
         public void CanGetHotelID()
         {
@@ -116,6 +108,80 @@ namespace AsyncTests
             hotelRoom.PetFriendly = false;
 
             Assert.False(hotelRoom.PetFriendly);
+        }
+
+        [Fact]
+        public async void CanCreateHotelRoom()
+        {
+            DbContextOptions<AsyncInnDbContext> options = new DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase("CreateHotelRoom").Options;
+            using (AsyncInnDbContext context = new AsyncInnDbContext(options))
+            {
+                HotelRoom hotelRoom = new HotelRoom();
+                hotelRoom.HotelID = 1;
+                hotelRoom.RoomNumber = 101;
+                hotelRoom.RoomID = 1;
+                hotelRoom.Rate = 100;
+                hotelRoom.PetFriendly = true;
+
+
+                context.HotelRoom.Add(hotelRoom);
+                await context.SaveChangesAsync();
+                var result = await context.HotelRoom.FirstOrDefaultAsync(h => h.HotelID == hotelRoom.HotelID && h.RoomNumber == hotelRoom.RoomNumber);
+
+                Assert.Equal(result, hotelRoom);
+            }
+
+        }
+
+
+        [Fact]
+        public async void CanUpdateHotelRooms()
+        {
+            DbContextOptions<AsyncInnDbContext> options = new DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase("UpdateRoom").Options;
+            using (AsyncInnDbContext context = new AsyncInnDbContext(options))
+            {
+                HotelRoom hotelRoom = new HotelRoom();
+                hotelRoom.HotelID = 1;
+                hotelRoom.RoomNumber = 101;
+                hotelRoom.RoomID = 1;
+                hotelRoom.Rate = 100;
+                hotelRoom.PetFriendly = true;
+
+
+                context.HotelRoom.Add(hotelRoom);
+                await context.SaveChangesAsync();
+                hotelRoom.Rate = 50;
+                context.HotelRoom.Update(hotelRoom);
+                await context.SaveChangesAsync();
+                var result = await context.HotelRoom.FirstOrDefaultAsync(h => h.HotelID == hotelRoom.HotelID && h.RoomNumber == hotelRoom.RoomNumber);
+
+                Assert.Equal(result, hotelRoom);
+            }
+
+        }
+
+        [Fact]
+        public async void CanDeleteHotelRooms()
+        {
+            DbContextOptions<AsyncInnDbContext> options = new DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase("DeleteRoom").Options;
+            using (AsyncInnDbContext context = new AsyncInnDbContext(options))
+            {
+                HotelRoom hotelRoom = new HotelRoom();
+                hotelRoom.HotelID = 1;
+                hotelRoom.RoomNumber = 101;
+                hotelRoom.RoomID = 1;
+                hotelRoom.Rate = 100;
+                hotelRoom.PetFriendly = true;
+
+
+                context.HotelRoom.Add(hotelRoom);
+                await context.SaveChangesAsync();
+                context.HotelRoom.Remove(hotelRoom);
+                await context.SaveChangesAsync();
+                var result = await context.HotelRoom.FirstOrDefaultAsync(h => h.HotelID == hotelRoom.HotelID && h.RoomNumber == hotelRoom.RoomNumber);
+
+                Assert.Null(result);
+            }
         }
     }
 }
