@@ -61,7 +61,7 @@ namespace AsyncInnApp.Migrations
                         });
                 });
 
-            modelBuilder.Entity("AsyncInnApp.Models.Hotel", b =>
+            modelBuilder.Entity("AsyncInnApp.Models.Room", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -77,7 +77,7 @@ namespace AsyncInnApp.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Hotel");
+                    b.ToTable("Room");
 
                     b.HasData(
                         new
@@ -215,7 +215,7 @@ namespace AsyncInnApp.Migrations
 
             modelBuilder.Entity("AsyncInnApp.Models.HotelRoom", b =>
                 {
-                    b.HasOne("AsyncInnApp.Models.Hotel", "Hotel")
+                    b.HasOne("AsyncInnApp.Models.Room", "Room")
                         .WithOne("HotelRoom")
                         .HasForeignKey("AsyncInnApp.Models.HotelRoom", "HotelID")
                         .OnDelete(DeleteBehavior.Cascade);

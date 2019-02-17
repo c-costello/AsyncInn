@@ -8,7 +8,7 @@ namespace AsyncInnApp.Migrations
         {
             migrationBuilder.AddColumn<int>(
                 name: "NumberOfRooms",
-                table: "Hotel",
+                table: "Room",
                 nullable: false,
                 defaultValue: 0);
         }
@@ -17,7 +17,7 @@ namespace AsyncInnApp.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "NumberOfRooms",
-                table: "Hotel");
+                table: "Room");
         }
     }
 }

@@ -21,7 +21,7 @@ namespace AsyncInnApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Hotel",
+                name: "Room",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
@@ -66,7 +66,7 @@ namespace AsyncInnApp.Migrations
                     table.ForeignKey(
                         name: "FK_HotelRoom_Hotel_HotelID",
                         column: x => x.HotelID,
-                        principalTable: "Hotel",
+                        principalTable: "Room",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -114,7 +114,7 @@ namespace AsyncInnApp.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Hotel",
+                table: "Room",
                 columns: new[] { "ID", "Address", "Name", "Phone" },
                 values: new object[,]
                 {
@@ -165,7 +165,7 @@ namespace AsyncInnApp.Migrations
                 name: "RoomAmenities");
 
             migrationBuilder.DropTable(
-                name: "Hotel");
+                name: "Room");
 
             migrationBuilder.DropTable(
                 name: "Amenities");
