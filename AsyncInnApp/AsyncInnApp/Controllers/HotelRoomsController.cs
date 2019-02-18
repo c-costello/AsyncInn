@@ -71,6 +71,14 @@ namespace AsyncInnApp.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                HotelRoom hotelRoomCheck = await _context.HotelRoom.FirstOrDefaultAsync(h => h.RoomNumber == hotelRoom.RoomNumber && h.HotelID == hotelRoom.HotelID);
+                if (hotelRoomCheck != null)
+                {
+                    return RedirectToAction(nameof(Create));
+                }
+                    
+                
                 _context.Add(hotelRoom);
                 Hotel hotel = _context.Hotel.FirstOrDefault(h => hotelRoom.HotelID == h.ID);
                 hotel.NumberOfRooms++;

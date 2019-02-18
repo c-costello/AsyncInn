@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AsyncInnApp.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    [Migration("20190204042951_reset")]
-    partial class reset
+    [Migration("20190217235403_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
+                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -61,7 +61,7 @@ namespace AsyncInnApp.Migrations
                         });
                 });
 
-            modelBuilder.Entity("AsyncInnApp.Models.Room", b =>
+            modelBuilder.Entity("AsyncInnApp.Models.Hotel", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -71,11 +71,13 @@ namespace AsyncInnApp.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("NumberOfRooms");
+
                     b.Property<string>("Phone");
 
                     b.HasKey("ID");
 
-                    b.ToTable("Room");
+                    b.ToTable("Hotel");
 
                     b.HasData(
                         new
@@ -83,6 +85,7 @@ namespace AsyncInnApp.Migrations
                             ID = 1,
                             Address = "123 Ocean Street",
                             Name = "Poseidon Inn",
+                            NumberOfRooms = 0,
                             Phone = "555-555-5555"
                         },
                         new
@@ -90,6 +93,7 @@ namespace AsyncInnApp.Migrations
                             ID = 2,
                             Address = "123 Spring Street",
                             Name = "Persophene Inn",
+                            NumberOfRooms = 0,
                             Phone = "444-555-6666"
                         },
                         new
@@ -97,6 +101,7 @@ namespace AsyncInnApp.Migrations
                             ID = 3,
                             Address = "123 Moon Street",
                             Name = "Artemis Inn",
+                            NumberOfRooms = 0,
                             Phone = "777-555-8888"
                         },
                         new
@@ -104,6 +109,7 @@ namespace AsyncInnApp.Migrations
                             ID = 4,
                             Address = "123 Sun Street",
                             Name = "Apollo Inn",
+                            NumberOfRooms = 0,
                             Phone = "555-999-5555"
                         },
                         new
@@ -111,6 +117,7 @@ namespace AsyncInnApp.Migrations
                             ID = 5,
                             Address = "123 Wine Street",
                             Name = "Diones Inn",
+                            NumberOfRooms = 0,
                             Phone = "555-999-8888"
                         });
                 });
@@ -131,8 +138,7 @@ namespace AsyncInnApp.Migrations
 
                     b.HasKey("RoomNumber", "HotelID");
 
-                    b.HasIndex("HotelID")
-                        .IsUnique();
+                    b.HasIndex("HotelID");
 
                     b.HasIndex("RoomID1");
 
@@ -200,17 +206,16 @@ namespace AsyncInnApp.Migrations
 
                     b.HasKey("RoomID", "AmenitiesID");
 
-                    b.HasIndex("AmenitiesID")
-                        .IsUnique();
+                    b.HasIndex("AmenitiesID");
 
                     b.ToTable("RoomAmenities");
                 });
 
             modelBuilder.Entity("AsyncInnApp.Models.HotelRoom", b =>
                 {
-                    b.HasOne("AsyncInnApp.Models.Room", "Room")
-                        .WithOne("HotelRoom")
-                        .HasForeignKey("AsyncInnApp.Models.HotelRoom", "HotelID")
+                    b.HasOne("AsyncInnApp.Models.Hotel", "Hotel")
+                        .WithMany("HotelRoom")
+                        .HasForeignKey("HotelID")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("AsyncInnApp.Models.Room", "Room")
@@ -221,8 +226,8 @@ namespace AsyncInnApp.Migrations
             modelBuilder.Entity("AsyncInnApp.Models.RoomAmenities", b =>
                 {
                     b.HasOne("AsyncInnApp.Models.Amenities", "Amenities")
-                        .WithOne("RoomAmenities")
-                        .HasForeignKey("AsyncInnApp.Models.RoomAmenities", "AmenitiesID")
+                        .WithMany("RoomAmenities")
+                        .HasForeignKey("AmenitiesID")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("AsyncInnApp.Models.Room", "Room")

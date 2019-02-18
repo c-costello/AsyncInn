@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AsyncInnApp.Migrations
 {
-    public partial class reset : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,14 +21,15 @@ namespace AsyncInnApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Room",
+                name: "Hotel",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),
-                    Phone = table.Column<string>(nullable: true)
+                    Phone = table.Column<string>(nullable: true),
+                    NumberOfRooms = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -66,7 +67,7 @@ namespace AsyncInnApp.Migrations
                     table.ForeignKey(
                         name: "FK_HotelRoom_Hotel_HotelID",
                         column: x => x.HotelID,
-                        principalTable: "Room",
+                        principalTable: "Hotel",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -114,15 +115,15 @@ namespace AsyncInnApp.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Room",
-                columns: new[] { "ID", "Address", "Name", "Phone" },
+                table: "Hotel",
+                columns: new[] { "ID", "Address", "Name", "NumberOfRooms", "Phone" },
                 values: new object[,]
                 {
-                    { 1, "123 Ocean Street", "Poseidon Inn", "555-555-5555" },
-                    { 2, "123 Spring Street", "Persophene Inn", "444-555-6666" },
-                    { 3, "123 Moon Street", "Artemis Inn", "777-555-8888" },
-                    { 4, "123 Sun Street", "Apollo Inn", "555-999-5555" },
-                    { 5, "123 Wine Street", "Diones Inn", "555-999-8888" }
+                    { 1, "123 Ocean Street", "Poseidon Inn", 0, "555-555-5555" },
+                    { 2, "123 Spring Street", "Persophene Inn", 0, "444-555-6666" },
+                    { 3, "123 Moon Street", "Artemis Inn", 0, "777-555-8888" },
+                    { 4, "123 Sun Street", "Apollo Inn", 0, "555-999-5555" },
+                    { 5, "123 Wine Street", "Diones Inn", 0, "555-999-8888" }
                 });
 
             migrationBuilder.InsertData(
@@ -141,8 +142,7 @@ namespace AsyncInnApp.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_HotelRoom_HotelID",
                 table: "HotelRoom",
-                column: "HotelID",
-                unique: true);
+                column: "HotelID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_HotelRoom_RoomID1",
@@ -152,8 +152,7 @@ namespace AsyncInnApp.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_RoomAmenities_AmenitiesID",
                 table: "RoomAmenities",
-                column: "AmenitiesID",
-                unique: true);
+                column: "AmenitiesID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -165,7 +164,7 @@ namespace AsyncInnApp.Migrations
                 name: "RoomAmenities");
 
             migrationBuilder.DropTable(
-                name: "Room");
+                name: "Hotel");
 
             migrationBuilder.DropTable(
                 name: "Amenities");
