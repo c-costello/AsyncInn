@@ -78,6 +78,8 @@ namespace AsyncInnApp.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(roomAmenities);
+                Room room = _context.Room.FirstOrDefault(r => r.ID == roomAmenities.RoomID);
+                room.NumberOfAmenities++;
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AsyncInnApp.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    [Migration("20190217235403_init")]
-    partial class init
+    [Migration("20190218010301_counter")]
+    partial class counter
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -155,6 +155,8 @@ namespace AsyncInnApp.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("NumberOfAmenities");
+
                     b.HasKey("ID");
 
                     b.ToTable("Room");
@@ -164,37 +166,43 @@ namespace AsyncInnApp.Migrations
                         {
                             ID = 1,
                             Layout = 1,
-                            Name = "Honeymoon Suite"
+                            Name = "Honeymoon Suite",
+                            NumberOfAmenities = 0
                         },
                         new
                         {
                             ID = 2,
                             Layout = 1,
-                            Name = "Singles Suite"
+                            Name = "Singles Suite",
+                            NumberOfAmenities = 0
                         },
                         new
                         {
                             ID = 3,
                             Layout = 2,
-                            Name = "Corner Suite"
+                            Name = "Corner Suite",
+                            NumberOfAmenities = 0
                         },
                         new
                         {
                             ID = 4,
                             Layout = 2,
-                            Name = "Family Suite"
+                            Name = "Family Suite",
+                            NumberOfAmenities = 0
                         },
                         new
                         {
                             ID = 5,
                             Layout = 0,
-                            Name = "King Studio"
+                            Name = "King Studio",
+                            NumberOfAmenities = 0
                         },
                         new
                         {
                             ID = 6,
                             Layout = 4,
-                            Name = "PentHouse"
+                            Name = "PentHouse",
+                            NumberOfAmenities = 0
                         });
                 });
 

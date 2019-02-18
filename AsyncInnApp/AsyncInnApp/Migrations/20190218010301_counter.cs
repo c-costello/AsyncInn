@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AsyncInnApp.Migrations
 {
-    public partial class init : Migration
+    public partial class counter : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -43,6 +43,7 @@ namespace AsyncInnApp.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
+                    NumberOfAmenities = table.Column<int>(nullable: false),
                     Layout = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -128,15 +129,15 @@ namespace AsyncInnApp.Migrations
 
             migrationBuilder.InsertData(
                 table: "Room",
-                columns: new[] { "ID", "Layout", "Name" },
+                columns: new[] { "ID", "Layout", "Name", "NumberOfAmenities" },
                 values: new object[,]
                 {
-                    { 1, 1, "Honeymoon Suite" },
-                    { 2, 1, "Singles Suite" },
-                    { 3, 2, "Corner Suite" },
-                    { 4, 2, "Family Suite" },
-                    { 5, 0, "King Studio" },
-                    { 6, 4, "PentHouse" }
+                    { 1, 1, "Honeymoon Suite", 0 },
+                    { 2, 1, "Singles Suite", 0 },
+                    { 3, 2, "Corner Suite", 0 },
+                    { 4, 2, "Family Suite", 0 },
+                    { 5, 0, "King Studio", 0 },
+                    { 6, 4, "PentHouse", 0 }
                 });
 
             migrationBuilder.CreateIndex(
