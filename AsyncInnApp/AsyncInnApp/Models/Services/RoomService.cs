@@ -17,6 +17,12 @@ namespace AsyncInnApp.Models.Services
         {
             _context = context;
         }
+
+        /// <summary>
+        /// Create a Room
+        /// </summary>
+        /// <param name="room">Room</param>
+        /// <returns>Task</returns>
         public async Task CreateRoom(Room room)
         {
             _context.Room.Add(room);
@@ -24,21 +30,42 @@ namespace AsyncInnApp.Models.Services
         }
 
 
+        /// <summary>
+        /// Get a Room by ID
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>Task</returns>
         public async Task<Room> GetRoom(int id)
         {
             return await _context.Room.FirstOrDefaultAsync(r => r.ID == id);
         }
 
+        /// <summary>
+        /// Get All Rooms
+        /// </summary>
+        /// <returns>Task IEnumerable</returns>
         public async Task<IEnumerable<Room>> GetRooms()
         {
             return await _context.Room.ToListAsync();
         }
 
+
+        /// <summary>
+        /// Update a Room
+        /// </summary>
+        /// <param name="room">Room</param>
+        /// <returns>Task</returns>
         public async Task UpdateRoom(Room room)
         {
             _context.Room.Update(room);
             await _context.SaveChangesAsync();
         }
+
+        /// <summary>
+        /// Delete a Room by ID
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>Task</returns>
         public async Task DeleteRoom(int id)
         {
             Room room = _context.Room.FirstOrDefault(r => r.ID == id);

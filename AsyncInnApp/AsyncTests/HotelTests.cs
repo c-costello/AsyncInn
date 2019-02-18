@@ -5,6 +5,7 @@ using AsyncInnApp.Models;
 using AsyncInnApp.Data;
 using AsyncInnApp.Models.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace AsyncTests
 {
@@ -29,15 +30,200 @@ namespace AsyncTests
             Assert.Equal("name 2", hotel.Name);
         }
 
-        //[Fact]
-        //public async void CanCreateHotel()
-        //{
-        //    DbContextOptions<AsyncInnDbContext> options = new DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase("CreateHotel").
-        //    using (AsyncInnDbContext context = new AsyncInnDbContext(options))
-        //    {
+        [Fact]
+        public void CanGetAddressOfHotel()
+        {
+            Hotel hotel = new Hotel();
+            hotel.Address = "test";
 
-        //    }
+            Assert.Equal("test", hotel.Address);
 
-        //}
+        }
+        
+        [Fact]
+        public void CanGetPhoneNumberOfHotel()
+        {
+            Hotel hotel = new Hotel();
+            hotel.Phone = "123-456-7890";
+
+            Assert.Equal("123-456-7890", hotel.Phone);
+
+        }
+
+        [Fact]
+        public void CanGetNumberOfRoomsOfHotel()
+        {
+            Hotel hotel = new Hotel();
+            hotel.NumberOfRooms = 3;
+
+            Assert.Equal(3, hotel.NumberOfRooms);
+        }
+
+        [Fact]
+        public void CanSetAddressOfHotel()
+        {
+            Hotel hotel = new Hotel();
+            hotel.Address = "test";
+            hotel.Address = "test2";
+
+            Assert.Equal("test2", hotel.Address);
+
+        }
+
+        [Fact]
+        public void CanSetPhoneNumberOfHotel()
+        {
+            Hotel hotel = new Hotel();
+            hotel.Phone = "123-456-7890";
+            hotel.Phone = "555-555-5555";
+
+            Assert.Equal("555-555-5555", hotel.Phone);
+
+        }
+
+        [Fact]
+        public void CanSetNumberOfRoomsOfHotel()
+        {
+            Hotel hotel = new Hotel();
+            hotel.NumberOfRooms = 3;
+            hotel.NumberOfRooms = 5;
+
+            Assert.Equal(5, hotel.NumberOfRooms);
+        }
+
+
+
+        [Fact]
+        public async void CanCreateHotel()
+        {
+            DbContextOptions<AsyncInnDbContext> options = new DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase("CreateHotel").Options;
+            using (AsyncInnDbContext context = new AsyncInnDbContext(options))
+            {
+                Hotel hotel = new Hotel();
+                hotel.ID = 1;
+                hotel.Name = "test";
+                hotel.Phone = "123-456-7890";
+                hotel.Address = "test address string";
+                hotel.NumberOfRooms = 10;
+
+                HotelService hotelService = new HotelService(context);
+
+                await hotelService.CreateHotel(hotel);
+                var result = await context.Hotel.FirstOrDefaultAsync(h => h.ID == hotel.ID);
+
+                Assert.Equal(result, hotel);
+            }
+
+        }
+
+        [Fact]
+        public async void CanGetHotel()
+        {
+            DbContextOptions<AsyncInnDbContext> options = new DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase("GetHotel").Options;
+            using (AsyncInnDbContext context = new AsyncInnDbContext(options))
+            {
+                Hotel hotel = new Hotel();
+                hotel.ID = 1;
+                hotel.Name = "test";
+                hotel.Phone = "123-456-7890";
+                hotel.Address = "test address string";
+                hotel.NumberOfRooms = 10;
+
+                HotelService hotelService = new HotelService(context);
+
+                await hotelService.CreateHotel(hotel);
+                var result = await hotelService.GetHotel(hotel.ID);
+
+                Assert.Equal(result, hotel);
+            }
+
+        }
+
+        [Fact]
+        public async void CanGetHotels()
+        {
+            DbContextOptions<AsyncInnDbContext> options = new DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase("GetHotels").Options;
+            using (AsyncInnDbContext context = new AsyncInnDbContext(options))
+            {
+                Hotel hotel1 = new Hotel();
+                hotel1.ID = 1;
+                hotel1.Name = "test";
+                hotel1.Phone = "123-456-7890";
+                hotel1.Address = "test address string";
+                hotel1.NumberOfRooms = 10;
+
+                Hotel hotel2 = new Hotel();
+                hotel2.ID = 2;
+                hotel2.Name = "test1";
+                hotel2.Phone = "223-456-7890";
+                hotel2.Address = "Test address string";
+                hotel2.NumberOfRooms = 3;
+
+                HotelService hotelService = new HotelService(context);
+
+                await hotelService.CreateHotel(hotel1);
+                await hotelService.CreateHotel(hotel2);
+                var hotelsList = await hotelService.GetHotels();
+                var hotels = hotelsList.ToString();
+
+                List<Hotel> resultsList = new List<Hotel>();
+                resultsList.Add(hotel1);
+                resultsList.Add(hotel2);
+                var results = resultsList.ToString();
+
+                Assert.Equal(results, hotels);
+            }
+
+        }
+        [Fact]
+        public async void CanEditHotel()
+        {
+            DbContextOptions<AsyncInnDbContext> options = new DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase("EditHotels").Options;
+            using (AsyncInnDbContext context = new AsyncInnDbContext(options))
+            {
+                Hotel hotel = new Hotel();
+                hotel.ID = 1;
+                hotel.Name = "test";
+                hotel.Phone = "123-456-7890";
+                hotel.Address = "test address string";
+                hotel.NumberOfRooms = 10;
+
+                HotelService hotelService = new HotelService(context);
+
+                await hotelService.CreateHotel(hotel);
+
+                hotel.Name = "new name";
+                await hotelService.UpdateHotel(hotel);
+
+                var result = await context.Hotel.FirstOrDefaultAsync(h => h.ID == hotel.ID);
+
+                Assert.Equal(result, hotel);
+            }
+
+        }
+        [Fact]
+        public async void CanDeleteHotel()
+        {
+            DbContextOptions<AsyncInnDbContext> options = new DbContextOptionsBuilder<AsyncInnDbContext>().UseInMemoryDatabase("DeleteHotels").Options;
+            using (AsyncInnDbContext context = new AsyncInnDbContext(options))
+            {
+                Hotel hotel = new Hotel();
+                hotel.ID = 1;
+                hotel.Name = "test";
+                hotel.Phone = "123-456-7890";
+                hotel.Address = "test address string";
+                hotel.NumberOfRooms = 10;
+
+                HotelService hotelService = new HotelService(context);
+
+                await hotelService.CreateHotel(hotel);
+                await hotelService.DeleteHotel(hotel.ID);
+
+                var result = await context.Hotel.FirstOrDefaultAsync(h => h.ID == hotel.ID);
+
+                Assert.Null(result);
+            }
+
+        }
     }
 }

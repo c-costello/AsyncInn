@@ -20,13 +20,11 @@ namespace AsyncInnApp.Controllers
             _context = context;
         }
 
-        // GET: Rooms
-        //public async Task<IActionResult> Index()
-        //{
-        //    return View(await _context.GetRooms());
-        //}
-
-        // GET: Rooms/Details/5
+        /// <summary>
+        /// Get Details Rooms
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>View</returns>
         public async Task<IActionResult> Details(int id)
         {
 
@@ -39,15 +37,20 @@ namespace AsyncInnApp.Controllers
             return View(room);
         }
 
-        // GET: Rooms/Create
+        /// <summary>
+        /// Get Create Rooms
+        /// </summary>
+        /// <returns>View</returns>
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Rooms/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Post Create Rooms
+        /// </summary>
+        /// <param name="room">Room</param>
+        /// <returns>int</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Name,Layout")] Room room)
@@ -60,7 +63,11 @@ namespace AsyncInnApp.Controllers
             return View(room);
         }
 
-        // GET: Rooms/Edit/5
+        /// <summary>
+        /// Get Edit Rooms
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>View</returns>
         public async Task<IActionResult> Edit(int id)
         {
 
@@ -71,10 +78,13 @@ namespace AsyncInnApp.Controllers
             }
             return View(room);
         }
-
-        // POST: Rooms/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
+        /// <summary>
+        /// Post Edit Rooms
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <param name="room">Room</param>
+        /// <returns>View</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Layout")] Room room)
@@ -106,7 +116,11 @@ namespace AsyncInnApp.Controllers
             return View(room);
         }
 
-        // GET: Rooms/Delete/5
+        /// <summary>
+        /// Get Delete Room
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>View</returns>
         public async Task<IActionResult> Delete(int id)
         {
 
@@ -120,7 +134,11 @@ namespace AsyncInnApp.Controllers
             return View(room);
         }
 
-        // POST: Rooms/Delete/5
+        /// <summary>
+        /// Post Delete Room
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>View</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -130,6 +148,11 @@ namespace AsyncInnApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Check is Room Exists
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>bool</returns>
         private bool RoomExists(int id)
         {
             if (_context.GetRoom(id) != null)
@@ -139,6 +162,11 @@ namespace AsyncInnApp.Controllers
             return true;
         }
         //Get Rooms + Search
+        /// <summary>
+        /// Get Rooms Index + Search rooms
+        /// </summary>
+        /// <param name="searchString">string</param>
+        /// <returns>View</returns>
         public async Task<IActionResult> Index(string searchString)
         {
             if (searchString == null)

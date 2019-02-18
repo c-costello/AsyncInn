@@ -19,14 +19,22 @@ namespace AsyncInnApp.Controllers
             _context = context;
         }
 
-        // GET: HotelRooms
+        /// <summary>
+        /// Get HotelRooms Index View
+        /// </summary>
+        /// <returns>View</returns>
         public async Task<IActionResult> Index()
         {
             var asyncInnDbContext = _context.HotelRoom.Include(h => h.Hotel);
             return View(await asyncInnDbContext.ToListAsync());
         }
 
-        // GET: HotelRooms/Details/5
+        /// <summary>
+        /// Get Details View
+        /// </summary>
+        /// <param name="hotelID">int</param>
+        /// <param name="roomNumber">int</param>
+        /// <returns>View</returns>
         public async Task<IActionResult> Details(int hotelID, int roomNumber)
         {
             var hotelRoom = await _context.HotelRoom
@@ -41,7 +49,10 @@ namespace AsyncInnApp.Controllers
             return View(hotelRoom);
         }
 
-        // GET: HotelRooms/Create
+        /// <summary>
+        /// Get Create HotelRoom view
+        /// </summary>
+        /// <returns>View</returns>
         public IActionResult Create()
         {
             ViewData["HotelID"] = new SelectList(_context.Hotel, "ID", "Name");
@@ -49,15 +60,25 @@ namespace AsyncInnApp.Controllers
             return View();
         }
 
-        // POST: HotelRooms/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Post Create HotelRoom
+        /// </summary>
+        /// <param name="hotelRoom">HotelRoom</param>
+        /// <returns>View</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("HotelID,RoomNumber,RoomID,Rate,PetFriendly")] HotelRoom hotelRoom)
         {
             if (ModelState.IsValid)
             {
+
+                HotelRoom hotelRoomCheck = await _context.HotelRoom.FirstOrDefaultAsync(h => h.RoomNumber == hotelRoom.RoomNumber && h.HotelID == hotelRoom.HotelID);
+                if (hotelRoomCheck != null)
+                {
+                    return RedirectToAction(nameof(Create));
+                }
+                    
+                
                 _context.Add(hotelRoom);
                 Hotel hotel = _context.Hotel.FirstOrDefault(h => hotelRoom.HotelID == h.ID);
                 hotel.NumberOfRooms++;
@@ -70,7 +91,12 @@ namespace AsyncInnApp.Controllers
             return View(hotelRoom);
         }
 
-        // GET: HotelRooms/Edit/5
+        /// <summary>
+        /// Get Edit 
+        /// </summary>
+        /// <param name="hotelID">int</param>
+        /// <param name="roomNumber">int</param>
+        /// <returns>View</returns>
         public async Task<IActionResult> Edit(int hotelID, int roomNumber)
         {
 
@@ -86,9 +112,13 @@ namespace AsyncInnApp.Controllers
             return View(hotelRoom);
         }
 
-        // POST: HotelRooms/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Post Edit
+        /// </summary>
+        /// <param name="hotelID">int</param>
+        /// <param name="roomNumber">int</param>
+        /// <param name="hotelroom">HotelRoom</param>
+        /// <returns>View</returns>
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditConfirm(int hotelID, int roomNumber, [Bind("HotelID,RoomNumber,RoomID,Rate,PetFriendly")] HotelRoom hotelroom)
@@ -127,7 +157,12 @@ namespace AsyncInnApp.Controllers
             return View(hotelroom);
         }
 
-        // GET: HotelRooms/Delete/5
+        /// <summary>
+        /// Delete HotelRoom
+        /// </summary>
+        /// <param name="hotelID">int</param>
+        /// <param name="roomNumber">int</param>
+        /// <returns>View</returns>
         public async Task<IActionResult> Delete(int hotelID, int roomNumber)
         {
             var hotelRoom = await _context.HotelRoom
@@ -142,7 +177,12 @@ namespace AsyncInnApp.Controllers
             return View(hotelRoom);
         }
 
-        // POST: HotelRooms/Delete/5
+        /// <summary>
+        /// Post Delete HotelRoom
+        /// </summary>
+        /// <param name="hotelID">int</param>
+        /// <param name="roomNumber">int</param>
+        /// <returns>View</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int hotelID, int roomNumber)
@@ -155,7 +195,11 @@ namespace AsyncInnApp.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        /// <summary>
+        /// Check if HotelRoom Exists
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>bool</returns>
         private bool HotelRoomExists(int id)
         {
             return _context.HotelRoom.Any(e => e.RoomNumber == id);

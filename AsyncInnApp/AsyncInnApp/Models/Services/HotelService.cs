@@ -16,23 +16,43 @@ namespace AsyncInnApp.Models.Services
         {
             _context = context;
         }
+
+        /// <summary>
+        /// Create a new Hotel
+        /// </summary>
+        /// <param name="hotel">Hotel</param>
+        /// <returns>Task</returns>
         public async Task CreateHotel(Hotel hotel)
         {
             _context.Hotel.Add(hotel);
             await _context.SaveChangesAsync();
         }
 
+
+        /// <summary>
+        /// Get Hotel by ID
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>Task Hotel</returns>
         public async Task<Hotel> GetHotel(int id)
         {
             return await _context.Hotel.FirstOrDefaultAsync(h => h.ID == id);
         }
 
+        /// <summary>
+        /// Get All Hotels
+        /// </summary>
+        /// <returns>Task IEnumerable</returns>
         public async Task<IEnumerable<Hotel>> GetHotels()
         {
             return await _context.Hotel.ToListAsync();
         }
 
-
+        /// <summary>
+        /// Update a Hotel
+        /// </summary>
+        /// <param name="hotel">Hotel</param>
+        /// <returns>Task</returns>
         public async Task UpdateHotel(Hotel hotel)
         {
             _context.Hotel.Update(hotel);
@@ -40,6 +60,11 @@ namespace AsyncInnApp.Models.Services
 
         }
 
+        /// <summary>
+        /// Delete Hotel By ID
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>Task</returns>
         public async Task DeleteHotel(int id)
         {
             Hotel hotel = _context.Hotel.FirstOrDefault(h => h.ID == id);

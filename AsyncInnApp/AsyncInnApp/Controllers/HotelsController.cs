@@ -20,13 +20,12 @@ namespace AsyncInnApp.Controllers
             _context = context;
         }
 
-        // GET: Hotels
-        //public async Task<IActionResult> Index()
-        //{
-        //    return View(await _context.GetHotels());
-        //}
 
-        // GET: Hotels/Details/5
+        /// <summary>
+        /// Get Hotel Details
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>View</returns>
         public async Task<IActionResult> Details(int id)
         {
 
@@ -40,15 +39,20 @@ namespace AsyncInnApp.Controllers
             return View(hotel);
         }
 
-        // GET: Hotels/Create
+        /// <summary>
+        /// Get Create Hotel
+        /// </summary>
+        /// <returns>View</returns>
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Hotels/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Post Create Hotel
+        /// </summary>
+        /// <param name="hotel">Hotel</param>
+        /// <returns>View</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Name,Address,Phone")] Hotel hotel)
@@ -62,7 +66,11 @@ namespace AsyncInnApp.Controllers
             return View(hotel);
         }
 
-        // GET: Hotels/Edit/5
+        /// <summary>
+        /// Get Edit Hotel
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>View</returns>
         public async Task<IActionResult> Edit(int id)
         {
             var hotel = await _context.GetHotel(id);
@@ -73,9 +81,12 @@ namespace AsyncInnApp.Controllers
             return View(hotel);
         }
 
-        // POST: Hotels/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Post Edit Hotel
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <param name="hotel">Hotel</param>
+        /// <returns>View</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Address,Phone")] Hotel hotel)
@@ -108,7 +119,11 @@ namespace AsyncInnApp.Controllers
             return View(hotel);
         }
 
-        // GET: Hotels/Delete/5
+        /// <summary>
+        /// Get Delete Hotel
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>View</returns>
         public async Task<IActionResult> Delete(int id)
         {
 
@@ -121,7 +136,11 @@ namespace AsyncInnApp.Controllers
             return View(hotel);
         }
 
-        // POST: Hotels/Delete/5
+        /// <summary>
+        /// Post Delete Hotel
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>View</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -131,6 +150,12 @@ namespace AsyncInnApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        /// <summary>
+        /// Check if Hotel Exists
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>bool</returns>
         private bool HotelExists(int id)
         {
             if (_context.GetHotel(id) != null)
@@ -140,7 +165,11 @@ namespace AsyncInnApp.Controllers
             return true;
         }
 
-        //Get: Hotels/Search
+        /// <summary>
+        /// Get Index Hotels and Search Hotels
+        /// </summary>
+        /// <param name="searchString">string</param>
+        /// <returns>View</returns>
         public async Task<IActionResult> Index(string searchString)
         {
             if (searchString == null)

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AsyncInnApp.Migrations
 {
-    public partial class reset : Migration
+    public partial class counter : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,7 +28,8 @@ namespace AsyncInnApp.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),
-                    Phone = table.Column<string>(nullable: true)
+                    Phone = table.Column<string>(nullable: true),
+                    NumberOfRooms = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -42,6 +43,7 @@ namespace AsyncInnApp.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
+                    NumberOfAmenities = table.Column<int>(nullable: false),
                     Layout = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -115,34 +117,33 @@ namespace AsyncInnApp.Migrations
 
             migrationBuilder.InsertData(
                 table: "Hotel",
-                columns: new[] { "ID", "Address", "Name", "Phone" },
+                columns: new[] { "ID", "Address", "Name", "NumberOfRooms", "Phone" },
                 values: new object[,]
                 {
-                    { 1, "123 Ocean Street", "Poseidon Inn", "555-555-5555" },
-                    { 2, "123 Spring Street", "Persophene Inn", "444-555-6666" },
-                    { 3, "123 Moon Street", "Artemis Inn", "777-555-8888" },
-                    { 4, "123 Sun Street", "Apollo Inn", "555-999-5555" },
-                    { 5, "123 Wine Street", "Diones Inn", "555-999-8888" }
+                    { 1, "123 Ocean Street", "Poseidon Inn", 0, "555-555-5555" },
+                    { 2, "123 Spring Street", "Persophene Inn", 0, "444-555-6666" },
+                    { 3, "123 Moon Street", "Artemis Inn", 0, "777-555-8888" },
+                    { 4, "123 Sun Street", "Apollo Inn", 0, "555-999-5555" },
+                    { 5, "123 Wine Street", "Diones Inn", 0, "555-999-8888" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Room",
-                columns: new[] { "ID", "Layout", "Name" },
+                columns: new[] { "ID", "Layout", "Name", "NumberOfAmenities" },
                 values: new object[,]
                 {
-                    { 1, 1, "Honeymoon Suite" },
-                    { 2, 1, "Singles Suite" },
-                    { 3, 2, "Corner Suite" },
-                    { 4, 2, "Family Suite" },
-                    { 5, 0, "King Studio" },
-                    { 6, 4, "PentHouse" }
+                    { 1, 1, "Honeymoon Suite", 0 },
+                    { 2, 1, "Singles Suite", 0 },
+                    { 3, 2, "Corner Suite", 0 },
+                    { 4, 2, "Family Suite", 0 },
+                    { 5, 0, "King Studio", 0 },
+                    { 6, 4, "PentHouse", 0 }
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_HotelRoom_HotelID",
                 table: "HotelRoom",
-                column: "HotelID",
-                unique: true);
+                column: "HotelID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_HotelRoom_RoomID1",
@@ -152,8 +153,7 @@ namespace AsyncInnApp.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_RoomAmenities_AmenitiesID",
                 table: "RoomAmenities",
-                column: "AmenitiesID",
-                unique: true);
+                column: "AmenitiesID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

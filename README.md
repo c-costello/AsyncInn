@@ -1,9 +1,8 @@
 # AsyncInn
 AsyncInn is a web application implamenting a database in order to manage hotel rooms in a hotel chain. With this application, the user should be able to create Hotels, Rooms, and Amenities, and connect those objects together appropriately.   
 
-## Changes
-Current Version: 0.1.0  
- > Application currently has the ability to render the index page for each table within the Async Inn's database. Basic css styling and html scaffolding has been implamented. The database has been created using the model first method, but is currently empty. The ability to add, edit, delete and view the table has been scaffolded, but has not been completely implamented.
+## Deployment
+![View Deployed Site Here](https://asyncinncostello.azurewebsites.net/)
  
 
 ## Database Schema
@@ -21,9 +20,7 @@ A Room Amenity has a many to one relationship with Amenities. A Room Amenity onl
 #### Amenities
 One amenity goes to many Room Amenties. 
 
-## Resources
 
 
-## Instructions
 
 

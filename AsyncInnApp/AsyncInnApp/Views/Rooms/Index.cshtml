@@ -34,6 +34,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Layout)
                 </th>
+                <th>
+                    # of Amenities
+                </th>
                 <th></th>
             </tr>
         </thead>
@@ -46,6 +49,9 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Layout)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfAmenities)
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

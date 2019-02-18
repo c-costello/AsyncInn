@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AsyncInnApp.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    [Migration("20190204051056_collections")]
-    partial class collections
+    [Migration("20190218010301_counter")]
+    partial class counter
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
+                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -155,6 +155,8 @@ namespace AsyncInnApp.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("NumberOfAmenities");
+
                     b.HasKey("ID");
 
                     b.ToTable("Room");
@@ -164,37 +166,43 @@ namespace AsyncInnApp.Migrations
                         {
                             ID = 1,
                             Layout = 1,
-                            Name = "Honeymoon Suite"
+                            Name = "Honeymoon Suite",
+                            NumberOfAmenities = 0
                         },
                         new
                         {
                             ID = 2,
                             Layout = 1,
-                            Name = "Singles Suite"
+                            Name = "Singles Suite",
+                            NumberOfAmenities = 0
                         },
                         new
                         {
                             ID = 3,
                             Layout = 2,
-                            Name = "Corner Suite"
+                            Name = "Corner Suite",
+                            NumberOfAmenities = 0
                         },
                         new
                         {
                             ID = 4,
                             Layout = 2,
-                            Name = "Family Suite"
+                            Name = "Family Suite",
+                            NumberOfAmenities = 0
                         },
                         new
                         {
                             ID = 5,
                             Layout = 0,
-                            Name = "King Studio"
+                            Name = "King Studio",
+                            NumberOfAmenities = 0
                         },
                         new
                         {
                             ID = 6,
                             Layout = 4,
-                            Name = "PentHouse"
+                            Name = "PentHouse",
+                            NumberOfAmenities = 0
                         });
                 });
 
@@ -206,8 +214,7 @@ namespace AsyncInnApp.Migrations
 
                     b.HasKey("RoomID", "AmenitiesID");
 
-                    b.HasIndex("AmenitiesID")
-                        .IsUnique();
+                    b.HasIndex("AmenitiesID");
 
                     b.ToTable("RoomAmenities");
                 });
@@ -227,8 +234,8 @@ namespace AsyncInnApp.Migrations
             modelBuilder.Entity("AsyncInnApp.Models.RoomAmenities", b =>
                 {
                     b.HasOne("AsyncInnApp.Models.Amenities", "Amenities")
-                        .WithOne("RoomAmenities")
-                        .HasForeignKey("AsyncInnApp.Models.RoomAmenities", "AmenitiesID")
+                        .WithMany("RoomAmenities")
+                        .HasForeignKey("AmenitiesID")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("AsyncInnApp.Models.Room", "Room")
