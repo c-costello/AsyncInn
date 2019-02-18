@@ -2,7 +2,7 @@
 AsyncInn is a web application implamenting a database in order to manage hotel rooms in a hotel chain. With this application, the user should be able to create Hotels, Rooms, and Amenities, and connect those objects together appropriately.   
 
 ## Deployment
-![View Deployed Site Here](https://asyncinncostello.azurewebsites.net/)
+[View Deployed Site Here](https://asyncinncostello.azurewebsites.net/)
  
 
 ## Database Schema
